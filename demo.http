@@ -1,0 +1,66 @@
+@host = http://localhost:8080/api
+
+// Get a list of people
+GET {{host}}/people
+
+###
+// Get a list of todo items
+GET {{host}}/todos
+
+###
+// Add a todo item
+POST {{host}}/todos
+Content-Type: application/json
+
+{
+  "description": "Shopping",
+  "assignedTo": "Eve",
+  "dueDate": "2021-04-30"
+}
+
+###
+// Add a todo item with unknown person
+POST {{host}}/todos
+Content-Type: application/json
+
+{
+  "description": "Shopping",
+  "assignedTo": "Nobody",
+  "dueDate": "2021-05-07"
+}
+
+###
+// Get first todo item
+GET {{host}}/todos/0
+
+###
+// Update todo item
+PATCH {{host}}/todos/0
+Content-Type: application/json
+
+{
+  "description": "Homework"
+}
+
+###
+// Update todo item to unknown person
+PATCH {{host}}/todos/0
+Content-Type: application/json
+
+{
+  "assignedTo": "Nobody"
+}
+
+
+###
+// Update todo item
+PATCH {{host}}/todos/0
+Content-Type: application/json
+
+{
+  "done": true
+}
+
+###
+// Delete todo item
+DELETE {{host}}/todos/0
